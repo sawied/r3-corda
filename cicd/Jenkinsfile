@@ -29,7 +29,7 @@ pipeline {
      stage ('build'){
        steps {
          sh '''
-            mvn clean install
+            mvn -f cicd/cicd-mule/pom.xml clean install
          '''
        }
      }
