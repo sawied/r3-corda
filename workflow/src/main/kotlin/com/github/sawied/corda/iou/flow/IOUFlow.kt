@@ -46,8 +46,7 @@ object IOUFlow{
         override val progressTracker = tracker()
 
 
-
-
+        @Suspendable
         override fun call(): SignedTransaction {
           val notary= serviceHub.networkMapCache.notaryIdentities[0]
 
