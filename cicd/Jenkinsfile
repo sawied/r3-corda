@@ -28,7 +28,7 @@ pipeline {
 
      stage ('build'){
        steps {
-         mvn clean install package -Dmaven.test.skip=true
+         mvn clean install
        }
      }
 
