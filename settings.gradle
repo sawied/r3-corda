@@ -1,0 +1,4 @@
+rootProject.name = 'corda-iou'
+include 'contracts'
+include 'workflow'
+
