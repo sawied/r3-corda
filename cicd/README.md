@@ -5,6 +5,13 @@ Mule
 3. Version Control
 4. Deployment Automation
 
+### Jenkins configuration ###
+
+1. JVM Setting
+   
+   default JVM installation directory JAVA_HOME is "**/usr/lib/jvm/java-1.8-openjdk**"
+
+
 
 ### Sonar installation ###
 
@@ -18,6 +25,7 @@ If /my/custom/config-file.cnf is the path and name of your custom configuration 
 $ docker run --name some-mysql -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
 
 sudo chown -R 200 /home/cicd/ci/data/nexus3
+sudo chown -R 1000 /home/cicd/ci/data/jenkins
 sudo chown -R polkitd /home/cicd/ci/sonar
 ```
 show variables

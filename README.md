@@ -36,6 +36,14 @@ development guide:
 # Key Components #
 State objects are the data held on the ledger, which represent the current state of an instance of a contract, and are used as inputs and outputs of transactions.
 
+The core of a smart contract is the executable code which validates changes to state objects in transactions. State objects are the data held on the ledger, which represent the current state of an instance of a contract, and are used as inputs and outputs of transactions.
+
+1. what is the key word @Suspendable of ability ? if someone missed this annotition, what is the behavior it is?
+
+2. if i deploy Cardapp into a production environment, it need all the platform must run in unified versions , such as JVM Corda runtime ?
+
+3. 
+
 
 # Run a Cordapp #
 
@@ -48,3 +56,5 @@ build/nodes/runnodes.bat
 ```
 
 start IOUFlow iouValue: 100, otherParty: "O=PartyC,L=Paris,C=FR"
+
+run vaultQuery contractStateType: com.github.sawied.corda.iou.state.IOUState
