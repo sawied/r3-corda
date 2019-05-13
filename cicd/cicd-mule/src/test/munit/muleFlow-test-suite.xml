@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<munit:config name="muleFlow-test-suite.xml" />
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="cf31dc6c-643b-4dba-a63f-13aac8354064" >
+		<http:request-connection host="localhost" port="8081" usePersistentConnections="false"/>
+	</http:request-config>
+	<munit:test name="muleFlow-test-suite-cicd-muleFlowTest" description="Test" doc:id="e8d7ef39-83d8-4e53-93bb-0fb57d575736" >
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="cicd-muleFlow" />
+		</munit:enable-flow-sources>
+		<munit:execution >
+			<http:request method="GET" doc:name="Request" doc:id="c5b1ad3d-be75-4617-bbf8-222256b47848" path="/" config-ref="HTTP_Request_configuration">
+			</http:request>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="debf11ba-c54c-4b16-b56d-b81de77d306b" expression="#[attributes.statusCode]" is="#[MunitTools::equalTo(200)]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

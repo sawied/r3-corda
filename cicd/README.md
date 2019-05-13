@@ -10,6 +10,20 @@ Mule
 1. JVM Setting
    
    default JVM installation directory JAVA_HOME is "**/usr/lib/jvm/java-1.8-openjdk**"
+   
+   default maven settings:
+   
+   Maven Name: maven 3.6.1
+   Maven Home: /usr/share/maven
+   
+   
+   
+   
+   
+   
+2. Nexus defailt credentials
+
+   Default credentials are: admin / admin123
 
 
 
