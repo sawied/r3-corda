@@ -61,7 +61,7 @@ pipeline {
             }
             steps {
                sh '''
-                 mvn -p cloudHub -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy -DmuleDeploy -DskipTests -Danypoint.username=${ANYPOINT_CREDS_USR} -Danypoint.password=${ANYPOINT_CREDS_PSW} -Dcloudhub.environment=Sandbox
+                 mvn -P cloudHub -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy -DmuleDeploy -DskipTests -Danypoint.username=${ANYPOINT_CREDS_USR} -Danypoint.password=${ANYPOINT_CREDS_PSW} -Dcloudhub.environment=Sandbox
                  '''
              }
        }
