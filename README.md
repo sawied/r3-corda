@@ -42,7 +42,9 @@ The core of a smart contract is the executable code which validates changes to s
 
 2. if i deploy Cardapp into a production environment, it need all the platform must run in unified versions , such as JVM Corda runtime ?
 
-3. 
+3. In development , RPC call is a main function to interact with Corda Nodes, This communicate by TCP protocol? how the network location in production environment? and how to make sure client's call is safe.
+
+4.
 
 
 # Run a Cordapp #

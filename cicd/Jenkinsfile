@@ -29,7 +29,7 @@ pipeline {
      stage ('build'){
        steps {
          sh '''
-            mvn -f cicd/cicd-mule/pom.xml clean package -DskipTests  -s cicd/settings.xml
+            mvn -f cicd/cicd-mule/pom.xml -s cicd/settings.xml clean package -DskipTests
          '''
        }
      }
@@ -38,7 +38,7 @@ pipeline {
       stage ('MUnit'){
             steps {
               sh '''
-                 mvn -f cicd/cicd-mule/pom.xml test  -s cicd/settings.xml
+                 mvn -f cicd/cicd-mule/pom.xml -s cicd/settings.xml test
               '''
             }
       }
@@ -47,7 +47,7 @@ pipeline {
       stage ('Deploy to Nexus Repository'){
             steps {
                sh '''
-                mvn -f cicd/cicd-mule/pom.xml deploy  -s cicd/settings.xml
+                mvn -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy
                '''
             }
       }
