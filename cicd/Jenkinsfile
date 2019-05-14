@@ -50,10 +50,22 @@ pipeline {
       stage ('Deploy to Nexus Repository'){
             steps {
                sh '''
-                mvn -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy -DaltSnapshotDeploymentRepository=nexus-snapshots::default::http://cicd-nexus3:8081/repository/maven-snapshots/
+                mvn -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy -DskipTests -DaltSnapshotDeploymentRepository=nexus-snapshots::default::http://cicd-nexus3:8081/repository/maven-snapshots/
                '''
             }
       }
+
+      stage ('Deploy to Environment'){
+            environment {
+               ANYPOINT_CREDS = credentials('anypoint-credentials')
+            }
+            steps {
+               sh '''
+                 mvn -p cloudHub -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy -DmuleDeploy -DskipTests -Danypoint.username=${ANYPOINT_CREDS_USR} -Danypoint.password=${ANYPOINT_CREDS_PSW} -Dcloudhub.environment=Sandbox
+                 '''
+             }
+       }
+
 
 
     }

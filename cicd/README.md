@@ -45,3 +45,9 @@ sudo chown -R polkitd /home/cicd/ci/sonar
 show variables
 
 default_storage_engine
+
+
+deploy to cloudhub
+```
+mvn -p cloudHub clean package deploy -DmuleDeploy -DskipTests -Danypoint.username=sawied2009 -Danypoint.password=Danan.2016 -Dcloudhub.environment=Sandbox
+```
