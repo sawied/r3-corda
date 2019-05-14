@@ -39,12 +39,28 @@ State objects are the data held on the ledger, which represent the current state
 The core of a smart contract is the executable code which validates changes to state objects in transactions. State objects are the data held on the ledger, which represent the current state of an instance of a contract, and are used as inputs and outputs of transactions.
 
 1. what is the key word @Suspendable of ability ? if someone missed this annotition, what is the behavior it is?
+   
+   initiateFlow()
+   session.send()
+   session.receive()
 
 2. if i deploy Cardapp into a production environment, it need all the platform must run in unified versions , such as JVM Corda runtime ?
+  
+   Application decided
+   
+   Spring boot, Hot-hot(Corda enterprise)
 
 3. In development , RPC call is a main function to interact with Corda Nodes, This communicate by TCP protocol? how the network location in production environment? and how to make sure client's call is safe.
+   
+   RPC overs ssl
+   
 
-4.
+4. Event scheduling 's aim for issue
+   
+   User case: Owner change 
+
+
+5. database;
 
 
 # Run a Cordapp #
