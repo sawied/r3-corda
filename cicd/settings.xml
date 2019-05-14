@@ -189,6 +189,7 @@ under the License.
      |
      |-->
     <profiles>
+
         <!-- profile
          | Specifies a set of introductions to the build process, to be activated using one or more of the
          | mechanisms described above. For inheritance purposes, and to activate profiles via <activatedProfiles/>
@@ -254,6 +255,7 @@ under the License.
         </profile>
         -->
     </profiles>
+
 
     <!-- activeProfiles
      | List of profiles that are active for all builds.

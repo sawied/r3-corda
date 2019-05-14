@@ -47,7 +47,7 @@ pipeline {
       stage ('Deploy to Nexus Repository'){
             steps {
                sh '''
-                mvn -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy
+                mvn -f cicd/cicd-mule/pom.xml -s cicd/settings.xml deploy -DaltSnapshotDeploymentRepository=snapshots::default::http://cicd-nexus3:8081/repository/maven-snapshots/
                '''
             }
       }
