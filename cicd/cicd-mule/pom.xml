@@ -26,6 +26,7 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+				
 				</configuration>
 			</plugin>
 		<plugin>
@@ -50,6 +51,10 @@
                         </formats>
                     </coverage>
                     <enableSurefireReports>true</enableSurefireReports>
+                    <dynamicPorts><dynamicPort>http.port</dynamicPort></dynamicPorts>
+                    <argLines>
+                        <argLine>-Dhttpport=8081</argLine>
+                    </argLines>
                 </configuration>
             </plugin>
         </plugins>

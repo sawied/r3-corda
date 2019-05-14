@@ -10,15 +10,14 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<munit:config name="muleFlow-test-suite.xml" />
 	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="cf31dc6c-643b-4dba-a63f-13aac8354064" >
-		<http:request-connection host="localhost" port="8081" usePersistentConnections="false"/>
+		<http:request-connection host="localhost" port="#[${http.port}]" usePersistentConnections="false"/>
 	</http:request-config>
 	<munit:test name="muleFlow-test-suite-cicd-muleFlowTest" description="Test" doc:id="e8d7ef39-83d8-4e53-93bb-0fb57d575736" >
 		<munit:enable-flow-sources >
 			<munit:enable-flow-source value="cicd-muleFlow" />
 		</munit:enable-flow-sources>
-		<munit:execution >
-			<http:request method="GET" doc:name="Request" doc:id="c5b1ad3d-be75-4617-bbf8-222256b47848" path="/" config-ref="HTTP_Request_configuration">
-			</http:request>
+		<munit:execution>
+			<http:request method="GET" doc:name="Request" doc:id="6d7e367e-6e16-4ed7-a7de-b3bd7b8c3e1e" config-ref="HTTP_Request_configuration"/>
 		</munit:execution>
 		<munit:validation >
 			<munit-tools:assert-that doc:name="Assert that" doc:id="debf11ba-c54c-4b16-b56d-b81de77d306b" expression="#[attributes.statusCode]" is="#[MunitTools::equalTo(200)]"/>
