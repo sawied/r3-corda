@@ -18,6 +18,56 @@ development guide:
 *	[CorDapp API](https://docs.corda.net/corda-api.html) 
 
 
+
+# Corda Trainning Contents #
+
+1. Block chain Basic Concept
+2. R3 Corda introduce
+3. The key concepts and features of the Corda platform
+   1. The network
+   2. Ledger
+   3. States
+   4. Transactions
+   5. Contracts
+   6. Flow
+   7. Consensus
+   8. Notaries
+   9. Vault
+   10. Time-Windows
+   11. Nodes
+   12. Transaction Tear-offs
+   13. Trade-offs
+   14. Deterministic JVM
+4. CorDapp development
+   1. Set up for CorDapp Development
+   2. Kotlin programming language introduce
+   3. Gradle build tool
+   4. developing an IOU application
+      1. Structuring Cordapp project
+      2. writing a contract
+      3. build trasctions
+      4. writing flows
+      5. Using client RPC API  
+5. Corda API 
+   1. States
+   2. Persistence
+      1. Schemas
+      2. JPA
+   3. Contracts
+   4. Vault Query
+   5. Transactions
+   6. Flows
+   7. Identity
+   8. ServiceHub
+   9. Testing
+6. Corda Network builder
+   1. Nodes 
+   2. Docker
+ 
+
+
+
+
 ### Tools Setup ###
 * Java JVM require at least version **8u171** 
 * Git
