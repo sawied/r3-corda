@@ -58,7 +58,7 @@ default_storage_engine
 
 deploy to cloudhub
 ```
-mvn -p cloudHub clean package deploy -DmuleDeploy -DskipTests -Danypoint.username=sawied2009 -Danypoint.password=Danan.2016 -Dcloudhub.environment=Sandbox
+mvn -p cloudHub clean package deploy -DmuleDeploy -DskipTests -Danypoint.username=sawied2009 -Danypoint.password=password -Dcloudhub.environment=Sandbox
 ```
 
 "environmentId": "bccf7ba8-354b-4247-a856-ba18c9b2cd2c",
