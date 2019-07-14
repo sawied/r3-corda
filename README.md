@@ -3,7 +3,7 @@
 development guide:
 
 
- 
+*   [Set up gitlab for version repository](#/) 
 *   [Set up for CorDapp development](https://docs.corda.net/getting-set-up.html)
 *	[Structuring CorDapp project](https://docs.corda.net/writing-a-cordapp.html)
 *	[Build a CorDapp project](https://docs.corda.net/cordapp-build-systems.html)
@@ -17,6 +17,47 @@ development guide:
 *	[Event scheduling](https://docs.corda.net/event-scheduling.html)
 *	[CorDapp API](https://docs.corda.net/corda-api.html) 
 
+
+# Install gitlab in Ubuntu #
+
+There are two gitlab version available for community and enterprise, but for installation , we don't distinct both version, The enterprise package contains all the features for community version,
+if you don't active enterprise features(license), so following guide will use enterprise version to install.
+
+1. Install and configure the necessary dependencies
+    ```bash
+    sudo apt-get update
+    sudo apt-get install -y curl openssh-server ca-certificates
+    ```
+2. Add the GitLab package repository and install the package
+    ```bash
+    curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+    sudo  apt-get install gitlab-ee
+    ``` 
+3.Config Gitlab using a non-bundled web server
+
+   1. Disable bundle Nginx(In /etc/gitlab/gitlab.rb set:)
+      
+      ```
+      nginx['enable'] = false
+      ```
+   2. Set the username of the non-bundled web-server user
+      
+      By default,The Nginx user is *nginx* , In /etc/gitlab/gitlab.rb set:
+      
+      ```
+      web_server['external_users'] = ['nginx']
+      ```
+   3. Add the non-bundled web-server to the list of trusted proxies
+      
+      Normally, omnibus-gitlab defaults the list of trusted proxies to what was configured in the real_ip module for the bundled NGINX.
+      
+      For non-bundled web-servers the list needs to be configured directly, and should include the IP address of your web-server if it is not on the same machine as GitLab. Otherwise, users will be shown as being signed in from your web-server’s IP address.
+      
+      ```
+      gitlab_rails['trusted_proxies'] = [ '192.168.1.0/24', '192.168.2.1', '2001:0db8::/32' ]
+      ```
+    
+  
 
 
 # Corda Trainning Contents #
