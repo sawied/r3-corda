@@ -12,22 +12,25 @@ import net.corda.core.schemas.PersistentState
 import net.corda.core.schemas.QueryableState
 @BelongsToContract(IOUContract::class)
 data class IOUState(
-        val value: Int,
-        val lender: Party,
-        val borrower: Party,
-        override val linearId: UniqueIdentifier=UniqueIdentifier()
-): LinearState, QueryableState {
+    val value: Int,
+    val lender: Party,
+    val borrower: Party,
+    override val linearId: UniqueIdentifier = UniqueIdentifier()
+) : LinearState, QueryableState {
 
     override val participants: List<AbstractParty> get() = listOf(lender, borrower)
 
     override fun generateMappedObject(schema: MappedSchema): PersistentState {
         return when (schema) {
-            is IOUSchemaV1 -> IOUSchemaV1.PersistentIOU(
-                    this.lender.name.toString(),
-                    this.borrower.name.toString(),
-                    this.value,
-                    this.linearId.id
-            )
+            is IOUSchemaV1 -> {
+                IOUSchemaV1.PersistentIOU(
+                        this.lender.name.toString(),
+                        this.borrower.name.toString(),
+                        this.value,
+                        this.linearId.id
+                )
+            }
+
             else -> throw IllegalArgumentException("Unrecognised schema $schema")
         }
     }

@@ -45,10 +45,11 @@ if you don't active enterprise features(license), so following guide will use en
       By default,The Nginx user is *nginx* , In /etc/gitlab/gitlab.rb set:
       
       ```
-      web_server['external_users'] = ['nginx']
+      web_server['external_users'] = ['www-data']
+    
       ```
-   3. Add the non-bundled web-server to the list of trusted proxies
-      
+   3. Add the non-bundled web-server to the list of trusted
+   
       Normally, omnibus-gitlab defaults the list of trusted proxies to what was configured in the real_ip module for the bundled NGINX.
       
       For non-bundled web-servers the list needs to be configured directly, and should include the IP address of your web-server if it is not on the same machine as GitLab. Otherwise, users will be shown as being signed in from your web-server’s IP address.
@@ -56,9 +57,19 @@ if you don't active enterprise features(license), so following guide will use en
       ```
       gitlab_rails['trusted_proxies'] = [ '192.168.1.0/24', '192.168.2.1', '2001:0db8::/32' ]
       ```
-    
-  
+      
+4.    Run sudo gitlab-ctl reconfigure for the change to take effect. 
+      ```
+      sudo gitlab-ctl reconfigure
+      ``` 
+> ***Note: For Git***    
+> Sometime, you want to change the gitignore, but not everyone on the team wants there changes. you can add ignore in your local global config as following:
+> ```git config --global core.excludesfile ~/.gitignore``` , Add .idea to user specific gitignore file ```echo .idea > ~/.gitignore``` 
 
+
+> ***Note:For Gradle***
+> Using private repository to speech up downloading is useful, however, how to do this for gradle?
+> put the ```gradle/init.gradle``` file into ```~/.gradle``` to change the default dependencies repository to a custom one. 
 
 # Corda Trainning Contents #
 

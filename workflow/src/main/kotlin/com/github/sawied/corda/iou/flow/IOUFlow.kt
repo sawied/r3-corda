@@ -12,23 +12,23 @@ import net.corda.core.transactions.TransactionBuilder
 import net.corda.core.utilities.ProgressTracker
 import net.corda.core.utilities.ProgressTracker.Step
 
-object IOUFlow{
-
+object IOUFlow {
 
     @InitiatingFlow
     @StartableByRPC
-    class Initiator(val iouValue:Int,
-                    val otherParty: Party
-                    ): FlowLogic<SignedTransaction>(){
+    class Initiator(
+        val iouValue: Int,
+        val otherParty: Party
+    ) : FlowLogic<SignedTransaction>() {
 
-
-        companion object{
+        companion object {
             object GENERATING_TRANSACTION : Step("Generating transaction based on new IOU.")
             object VERIFYING_TRANSACTION : Step("Verifying contract constraints.")
             object SIGNING_TRANSACTION : Step("Signing transaction with our private key.")
             object GATHERING_SIGS : Step("Gathering the counterparty's signature.") {
                 override fun childProgressTracker() = CollectSignaturesFlow.tracker()
             }
+
             object FINALISING_TRANSACTION : Step("Obtaining notary signature and recording transaction.") {
                 override fun childProgressTracker() = FinalityFlow.tracker()
             }
@@ -42,28 +42,24 @@ object IOUFlow{
             )
         }
 
-
         override val progressTracker = tracker()
-
 
         @Suspendable
         override fun call(): SignedTransaction {
-          val notary= serviceHub.networkMapCache.notaryIdentities[0]
+            val notary = serviceHub.networkMapCache.notaryIdentities[0]
 
-            //Stage 1
-            progressTracker.currentStep=GENERATING_TRANSACTION
+            // Stage 1
+            progressTracker.currentStep = GENERATING_TRANSACTION
             // Generate an unsigned transaction.
             val iouState = IOUState(iouValue, serviceHub.myInfo.legalIdentities.first(), otherParty)
             val txCommand = Command(IOUContract.Commands.Create(), iouState.participants.map { it.owningKey })
 
-            val txBuilder=TransactionBuilder(notary).addOutputState(iouState,IOUContract.ID).addCommand(txCommand)
-
+            val txBuilder = TransactionBuilder(notary).addOutputState(iouState, IOUContract.ID).addCommand(txCommand)
 
             // Stage 2.
             progressTracker.currentStep = VERIFYING_TRANSACTION
             // Verify that the transaction is valid.
             txBuilder.verify(serviceHub)
-
 
             // Stage 3.
             progressTracker.currentStep = SIGNING_TRANSACTION
@@ -80,11 +76,8 @@ object IOUFlow{
             progressTracker.currentStep = FINALISING_TRANSACTION
             // Notarise and record the transaction in both parties' vaults.
             return subFlow(FinalityFlow(fullySignedTx, setOf(otherPartySession), FINALISING_TRANSACTION.childProgressTracker()))
-
         }
-
     }
-
 
     @InitiatedBy(Initiator::class)
     class Acceptor(val otherPartySession: FlowSession) : FlowLogic<SignedTransaction>() {

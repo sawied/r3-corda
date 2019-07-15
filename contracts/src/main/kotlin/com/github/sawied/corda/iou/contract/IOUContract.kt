@@ -1,6 +1,5 @@
 package com.github.sawied.corda.iou.contract
 
-
 import com.github.sawied.corda.iou.state.IOUState
 import net.corda.core.contracts.CommandData
 import net.corda.core.contracts.Contract
@@ -39,7 +38,6 @@ class IOUContract : Contract {
             val out = tx.outputsOfType<IOUState>().single()
             "The lender and the borrower cannot be the same entity." using (out.lender != out.borrower)
             "All of the participants must be signers." using (command.signers.containsAll(out.participants.map { it.owningKey }))
-
             // IOU-specific constraints.
             "The IOU's value must be non-negative." using (out.value > 0)
         }
