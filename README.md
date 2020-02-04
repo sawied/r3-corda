@@ -32,6 +32,7 @@ if you don't active enterprise features(license), so following guide will use en
     ```bash
     curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
     sudo  apt-get install gitlab-ee
+    sudo dpkg -i packagename # if you prefer to manual installing
     ``` 
 3.Config Gitlab using a non-bundled web server
 
@@ -45,8 +46,7 @@ if you don't active enterprise features(license), so following guide will use en
       By default,The Nginx user is *nginx* , In /etc/gitlab/gitlab.rb set:
       
       ```
-      web_server['external_users'] = ['www-data']
-    
+      web_server['external_users'] = ['www-data']   
       ```
    3. Add the non-bundled web-server to the list of trusted
    
@@ -58,10 +58,51 @@ if you don't active enterprise features(license), so following guide will use en
       gitlab_rails['trusted_proxies'] = [ '192.168.1.0/24', '192.168.2.1', '2001:0db8::/32' ]
       ```
       
-4.    Run sudo gitlab-ctl reconfigure for the change to take effect. 
+   4. Run sudo gitlab-ctl reconfigure for the change to take effect. 
       ```
       sudo gitlab-ctl reconfigure
       ``` 
+   5. Setting Nginx web server
+      
+      Download the right web server configs from [gitlab recipes repository](https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server),Make sure you pick the right configuration file depending whether you choose to serve GitLab with SSL or not. The only thing you need to change is YOUR_SERVER_FQDN with your own FQDN and if you use SSL, the location where your SSL keys currently reside. You also might need to change the location of your log files.
+      ```
+      sudo ln -s /etc/nginx/sites-available/gitlab gitlab
+      ```
+         
+   6. Useful command for gitlab
+      ```
+      sudo gitlab-ctl start    # start all gitlab components
+      sudo gitlab-ctl stop        # stop all gitlab components
+      sudo gitlab-ctl restart        # restart all gitlab components
+      sudo gitlab-ctl status        # check the service status
+      sudo gitlab-ctl reconfigure        # startup service
+      sudo vim /etc/gitlab/gitlab.rb        # modify default configuration
+      gitlab-rake gitlab:check SANITIZE=true --trace    # check gitlab
+      sudo gitlab-ctl tail                 # look up logs
+      ```   
+4. Install GitLab Runner
+   1. Add GitLab’s official repository:
+    ```
+    curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+    ``` 
+   2. Install the latest version of GitLab Runner, or skip to the next step to install a specific version:
+    ```
+    sudo apt-get install gitlab-runner
+    sudo apt-get install gitlab-runner=10.0.0 # (if you use version8.0,select runner version gitlab-ci-multi-runner-1.11.2-1)
+    apt-get install gitlab-ci-multi-runner=1.11.2
+    yum install gitlab-ci-multi-runner-1.11.2-1
+    ```
+    > manual install gitlab-runner:
+    > uninstall ,query  has installed package , and remove ```rpm -qa | grep -i gitlab```, ```sudo rpm -e gitlab-ci-multi-runner-9.5.0-1.x86_64```
+    > install from rpm package : ```sudo rpm -ivh gitlab-ci-multi-runner_amd64.rpm```, and register : ```sudo gitlab-ci-multi-runner register```
+    > query gitlab-runner status : ```sudo gitlab-ci-multi-runner status```
+5. Registering Runners
+   > before run following command,make sure you have got a registration token from gitlab admin page (admin->runners) 
+   Registering a Runner is the process that binds the Runner with a GitLab instance
+   ```
+   sudo gitlab-runner register
+   ```
+   
 > ***Note: For Git***    
 > Sometime, you want to change the gitignore, but not everyone on the team wants there changes. you can add ignore in your local global config as following:
 > ```git config --global core.excludesfile ~/.gitignore``` , Add .idea to user specific gitignore file ```echo .idea > ~/.gitignore``` 
