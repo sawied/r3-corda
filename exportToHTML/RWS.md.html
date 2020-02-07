@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>RWS.md</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+RWS.md</font>
+</center></td></tr></table>
+<pre><span class="s0"># </span>Cloud Migration <span class="s0">#</span>
+
+<span class="s0">1. </span>Software Architecture
+   <span class="s0">1. </span>SOA,DSA(Distributed Service Architecture),MicroServices
+   <span class="s0">2. </span>MicroServices Architecture Design
+      <span class="s0">1. </span>Bounded Context
+      <span class="s0">2. </span>Services Management
+      <span class="s0">3. </span>MicroService in Cloud 
+   <span class="s0">3. </span>MicroServices
+      <span class="s0">1. </span>Aim of MicroService
+      <span class="s0">2. </span>Difficult of implement MicroService
+<span class="s0">2. </span>Technology Architecture
+   <span class="s0">1. </span>Front End
+      <span class="s0">1. </span>Mobile H5
+      <span class="s0">2. </span>Mobile Native
+      <span class="s0">3. </span>PC Web
+      <span class="s0">4. </span>POS
+   <span class="s0">2. </span>API Gateway/SLB
+      <span class="s0">1. </span>Traffic Gateway
+         <span class="s0">1. </span>Log
+         <span class="s0">2. </span>Traffic Control
+         <span class="s0">3. </span>IP Black and white list
+         <span class="s0">4. </span>Firewall
+         <span class="s0">5. </span>Kong/OpenRedty
+      <span class="s0">2. </span>Business Gateway
+         <span class="s0">1. </span>Vert.X
+         <span class="s0">2. </span>API SDK
+         <span class="s0">3. </span>Rest API/WebSocket
+   <span class="s0">3. </span>Business Application
+         <span class="s0">1. </span>Stateless&amp;Stateful service
+         <span class="s0">2. </span>Release Management
+         <span class="s0">3. </span>Service monitoring and link tracing
+         <span class="s0">4. </span>Monitoring
+         <span class="s0">5. </span>Log collection
+         <span class="s0">6. </span>Auto scaling
+         <span class="s0">7. </span>Health check
+         <span class="s0">8. </span>Encryption Service
+         <span class="s0">9. </span>Access Control
+         <span class="s0">10. </span>2 Factor Authentication
+         <span class="s0">11. </span>Key Management
+         <span class="s0">10. </span>Distributed transaction
+   <span class="s0">4. </span>Shared Service Center(BME)
+         <span class="s0">1. </span>EDAS(Enterprise distributed service framework)
+         <span class="s0">2. </span>Container Service(Kubernetes)
+         <span class="s0">3. </span>Message queue
+         <span class="s0">4. </span>Object Storage Service (OSS)
+         <span class="s0">5. </span>Database service
+         <span class="s0">6. </span>Cache Service
+         <span class="s0">7. </span>VPC Network
+
+<span class="s0">3. </span>Technology  Stack
+   <span class="s0">1. </span>Spring boot
+   <span class="s0">2. </span>Apache Dubbo 
+   <span class="s0">3. </span>Restful API
+   <span class="s0">4. </span>Swagger API
+   <span class="s0">5. </span>Congfiguration Center(ACM)
+   <span class="s0">6. </span>Spring Cloud
+   <span class="s0">7. </span>Spring MVC
+   <span class="s0">8. </span>Spring data JPA
+   <span class="s0">9. </span>Log4j2
+   <span class="s0">10. </span>React(Frontend)
+   <span class="s0">11. </span>Java(vjdk8u65)
+   <span class="s0">12. </span>Container platform(Kubernetes)
+   <span class="s0">13. </span>Middleware(EDAS, MQ, ACM)
+<span class="s0">4. </span>Devops CI
+   <span class="s0">1. </span>git branch management &amp; release Version
+   <span class="s0">2. </span>Docker Image 
+   <span class="s0">3. </span>Docker Image repository
+   <span class="s0">4. </span>git repository
+   <span class="s0">5. </span>git Config Center
+   <span class="s0">6. </span>Nexus 
+   <span class="s0">7. </span>Jira
+   <span class="s0">8. </span>Collaborate
+   <span class="s0">9. </span>Jenkins pipeline
+   <span class="s0">10. </span>SonarQube
+   <span class="s0">11. </span>Kubernetes Cluster For different environment
+   <span class="s0">12. </span>Release version Controll &amp; Rollback
+   <span class="s0">13. </span>FlyWay script migration
+<span class="s0">5. </span>Data migration
+   <span class="s0">1. </span>Data Security
+      <span class="s0">1. </span>On Premise
+         <span class="s0">1. </span>identify sensitive data 
+         <span class="s0">2. </span>Load data and encrypt data with Thales VTS
+         <span class="s0">3. </span>Stage database
+      <span class="s0">2. </span>On Cloud
+         <span class="s0">1. </span>Operational database
+         <span class="s0">2. </span>ETL &amp; Application database
+         <span class="s0">3. </span>Thales API for Detokenize data
+      <span class="s0">3. </span>Security
+         <span class="s0">1. </span>White IP list 
+         <span class="s0">2. </span>VPC
+         <span class="s0">3. </span>RDS SSL
+         <span class="s0">4. </span>TDE(Transparent Data Encryption)
+   <span class="s0">2. </span>Blob data 
+      <span class="s0">1. </span>OSS storge
+      <span class="s0">2. </span>OSS Encryption
+   <span class="s0">3. </span>Data Warehouse
+      <span class="s0">1. </span>ETL
+      <span class="s0">2. </span>MapRedule
+      <span class="s0">3. </span>Sqoop,Spring batch
+      <span class="s0">4. </span>NetFlix Conductor
+<span class="s0">6. </span>Legacy System
+   <span class="s0">1. </span>API Integration Bus
+   <span class="s0">2. </span>Split Monolithic application</pre>
+</body>
+</html>
