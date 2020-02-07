@@ -102,3 +102,17 @@
 6. Legacy System
    1. API Integration Bus
    2. Split Monolithic application
+   
+   -------------------------------------
+   # Task Assignment #
+   
+   |Index|Task|Description|Owner|Start|End|
+   |-----|:----|:-----------|-----|----|----|
+   |1   |  MicroServices Introduction | Introduce New Architecture for Enterprise application Large-scale and how to implement and the advancement of Enterprise architecture in cloud | James X W Zhang  |  10-Feb | 14-Feb  |
+   |2   | Frontend architecture  | Introduce popular framework from frontside include how to adapter different terminal device for API Integration，include new UI Framework React and related component framework| Yangyanbin  | 10-Feb  |  21-Feb |
+   |3   |API Gateway   |Introduce API Gateway for Microservice Integration, Traffic Gateway and Business Gateway，how to handler Security issue and API Control,kong and  Vert.X| James X W Zhang  |  17-Feb |  21-Feb |
+   |4   | Spring cloud & Dubbo Framework in Cloud  | Base on Dubbo & Spring cloud to implement the scalable MicroService Application, include Dubbo, ACM register, Load balancer and Circuit Breaker etc   | Mory  | 10-Feb  | 14-Feb  |
+   |5   |Enterprise Core Service   |Introduce how to implement Access Control, API Management,Log tracking & Cache  | James X W Zhang  |  24-Feb | 28-Feb   |
+   |6   |Devops Tools  | Jenkins,git,SonarQube, Jenkins,Docker and Kubernetes to manage project life cycle | zhaopeng  | 10-Feb  |14-Feb |
+   |7   |Data Migration   |As a Company, how to migrate on premise data to cloud , data Security, solution, such as ETL tools ,Thales, Stage database and data Encryption  |   Derex|  10-Feb |14-Feb   |
+   |8   | Big data   |Collect data from different channel, and do data analysis, data Storage and MapRedule |  Derex |17-Feb   |21-Feb   |
